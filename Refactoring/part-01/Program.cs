@@ -1,0 +1,12 @@
+using RefactoringLab;
+var shipping = new ShippingCostCalculator([new AramexCarrier(), new FedExCarrier(), new DhlCarrier(), new BostaCarrier()]);
+Console.WriteLine($"Aramex 2kg -> {shipping.Calculate("Aramex", 2)}");
+Console.WriteLine($"FedEx 2kg  -> {shipping.Calculate("FedEx", 2)}");
+Console.WriteLine($"Bosta 2kg  -> {shipping.Calculate("Bosta", 2)}");
+Console.WriteLine();
+new OrderProcessor(new SqlOrderRepository(), new SmtpEmailSender()).Process(1001, "customer@example.com");
+Console.WriteLine();
+new Notification(new EmailChannel(), DateTime.Today.AddHours(18), new UrgentModifier()).Send("customer@example.com", "Your order ships tomorrow");
+new Notification(new SmsChannel(), modifiers: new UrgentModifier()).Send("+201000000000", "OTP 4821");
+new Notification(new WhatsAppChannel()).Send("+201000000000", "Your order is ready");
+new Notification(new WhatsAppChannel(), DateTime.Today.AddHours(19), new UrgentModifier()).Send("+201000000000", "Please collect your order");
