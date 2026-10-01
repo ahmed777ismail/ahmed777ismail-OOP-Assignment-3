@@ -1,5 +1,5 @@
 namespace Assignment.Generics;
-public sealed class Store<T>
+public sealed class Store<T> where T : IHasId
 {
     private readonly List<T> _items = [];
     public void Add(T item) => _items.Add(item);
